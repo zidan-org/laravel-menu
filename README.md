@@ -1,6 +1,5 @@
 # Laravel Drag and Drop menu
-[![Latest Stable Version](https://poser.pugx.org/nguyendachuy/laravel-menu/v/stable)](https://packagist.org/packages/nguyendachuy/laravel-menu) [![Latest Unstable Version](https://poser.pugx.org/nguyendachuy/laravel-menu/v/unstable)](https://packagist.org/packages/nguyendachuy/laravel-menu) [![Total Downloads](https://poser.pugx.org/nguyendachuy/laravel-menu/downloads)](https://packagist.org/packages/nguyendachuy/laravel-menu) [![Monthly Downloads](https://poser.pugx.org/nguyendachuy/laravel-menu/d/monthly)](https://packagist.org/packages/nguyendachuy/laravel-menu)
-
+[![Latest Stable Version](https://poser.pugx.org/nguyendachuy/laravel-menu/v)](//packagist.org/packages/nguyendachuy/laravel-menu) [![Total Downloads](https://poser.pugx.org/nguyendachuy/laravel-menu/downloads)](//packagist.org/packages/nguyendachuy/laravel-menu) [![Latest Unstable Version](https://poser.pugx.org/nguyendachuy/laravel-menu/v/unstable)](//packagist.org/packages/nguyendachuy/laravel-menu) [![License](https://poser.pugx.org/nguyendachuy/laravel-menu/license)](//packagist.org/packages/nguyendachuy/laravel-menu)
 forked from https://github.com/lordmacu/wmenu
 ![Laravel drag and drop menu](https://raw.githubusercontent.com/nguyendachuy/laravel-menu/master/screenshot.png)
 
