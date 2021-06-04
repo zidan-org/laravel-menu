@@ -1,109 +1,111 @@
 <?php
 
-namespace Harimayco\Menu\Controllers;
+namespace NguyenHuy\Menu\Controllers;
 
-use Harimayco\Menu\Facades\Menu;
+use NguyenHuy\Menu\Facades\Menu;
 use Illuminate\Http\Request;
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Harimayco\Menu\Models\Menus;
-use Harimayco\Menu\Models\MenuItems;
+use NguyenHuy\Menu\Models\Menus;
+use NguyenHuy\Menu\Models\MenuItems;
 
 class MenuController extends Controller
 {
-
-    public function createnewmenu()
+    public function createNewMenu(Request $request)
     {
-
         $menu = new Menus();
-        $menu->name = request()->input("menuname");
+        $menu->name = $request->input('menuname');
         $menu->save();
-        return json_encode(array("resp" => $menu->id));
+        return response()->json([
+            'resp' => $menu->id
+        ], 200);
     }
 
-    public function deleteitemmenu()
+    public function deleteItemMenu(Request $request)
     {
-        $menuitem = MenuItems::find(request()->input("id"));
-
+        $menuitem = MenuItems::findOrFail($request->input('id'));
         $menuitem->delete();
+        return response()->json([
+            'resp' => 1
+        ], 200);
     }
 
-    public function deletemenug()
+    public function deleteMenug(Request $request)
     {
-        $menus = new MenuItems();
-        $getall = $menus->getall(request()->input("id"));
-        if (count($getall) == 0) {
-            $menudelete = Menus::find(request()->input("id"));
-            $menudelete->delete();
+        $menudelete = Menus::findOrFail($request->input('id'));
+        $menudelete->delete();
 
-            return json_encode(array("resp" => "you delete this item"));
-        } else {
-            return json_encode(array("resp" => "You have to delete all items first", "error" => 1));
-
-        }
+        return response()->json([
+            'resp' => 'You delete this item'
+        ], 200);
     }
 
-    public function updateitem()
+    public function updateItem(Request $request)
     {
-        $arraydata = request()->input("arraydata");
+        $arraydata = $request->input('arraydata');
         if (is_array($arraydata)) {
             foreach ($arraydata as $value) {
-                $menuitem = MenuItems::find($value['id']);
+                $menuitem = MenuItems::findOrFail($value['id']);
                 $menuitem->label = $value['label'];
                 $menuitem->link = $value['link'];
                 $menuitem->class = $value['class'];
+                $menuitem->icon = $value['icon'];
                 if (config('menu.use_roles')) {
-                    $menuitem->role_id = $value['role_id'] ? $value['role_id'] : 0 ;
+                    $menuitem->role_id = $value['role_id'] ? $value['role_id'] : 0;
                 }
                 $menuitem->save();
             }
         } else {
-            $menuitem = MenuItems::find(request()->input("id"));
-            $menuitem->label = request()->input("label");
-            $menuitem->link = request()->input("url");
-            $menuitem->class = request()->input("clases");
+            $menuitem = MenuItems::findOrFail($request->input('id'));
+            $menuitem->label = $request->input('label');
+            $menuitem->link = $request->input('url');
+            $menuitem->class = $request->input('clases');
+            $menuitem->icon = $request->input('icon');
             if (config('menu.use_roles')) {
-                $menuitem->role_id = request()->input("role_id") ? request()->input("role_id") : 0 ;
+                $menuitem->role_id = $request->input('role_id') ? $request->input('role_id') : 0;
             }
             $menuitem->save();
         }
+        return response()->json([
+            'resp' => 1
+        ], 200);
     }
 
-    public function addcustommenu()
+    public function addCustomMenu(Request $request)
     {
-
         $menuitem = new MenuItems();
-        $menuitem->label = request()->input("labelmenu");
-        $menuitem->link = request()->input("linkmenu");
+        $menuitem->label = $request->input('labelmenu');
+        $menuitem->link = $request->input('linkmenu');
+        $menuitem->icon = $request->input('iconmenu');
         if (config('menu.use_roles')) {
-            $menuitem->role_id = request()->input("rolemenu") ? request()->input("rolemenu")  : 0 ;
+            $menuitem->role_id = $request->input('rolemenu') ? $request->input('rolemenu')  : 0;
         }
-        $menuitem->menu = request()->input("idmenu");
-        $menuitem->sort = MenuItems::getNextSortRoot(request()->input("idmenu"));
+        $menuitem->menu = $request->input('idmenu');
+        $menuitem->sort = MenuItems::getNextSortRoot($request->input('idmenu'));
         $menuitem->save();
-
+        return response()->json([
+            'resp' => 1
+        ], 200);
     }
 
-    public function generatemenucontrol()
+    public function generateMenuControl(Request $request)
     {
-        $menu = Menus::find(request()->input("idmenu"));
-        $menu->name = request()->input("menuname");
-
+        $menu = Menus::findOrFail($request->input('idMenu'));
+        $menu->name = $request->input('menuName');
         $menu->save();
-        if (is_array(request()->input("arraydata"))) {
-            foreach (request()->input("arraydata") as $value) {
-
-                $menuitem = MenuItems::find($value["id"]);
-                $menuitem->parent = $value["parent"];
-                $menuitem->sort = $value["sort"];
-                $menuitem->depth = $value["depth"];
+        if (is_array($request->input('data'))) {
+            foreach ($request->input('data') as $key => $value) {
+                $menuitem = MenuItems::findOrFail($value['id']);
+                $menuitem->parent = $value['parent_id'] ?? 0;
+                $menuitem->sort = $key;
+                $menuitem->depth = $value['depth'] == 0 ? 0 : $value['depth'] - 1;
                 if (config('menu.use_roles')) {
-                    $menuitem->role_id = request()->input("role_id");
+                    $menuitem->role_id = $request->input('role_id');
                 }
                 $menuitem->save();
             }
         }
-        echo json_encode(array("resp" => 1));
-
+        return response()->json([
+            'resp' => 1
+        ], 200);
     }
 }

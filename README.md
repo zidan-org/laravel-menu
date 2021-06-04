@@ -1,15 +1,15 @@
-# Laravel Drag and Drop menu editor like wordpress
-[![Latest Stable Version](https://poser.pugx.org/harimayco/laravel-menu/v/stable)](https://packagist.org/packages/harimayco/laravel-menu) [![Latest Unstable Version](https://poser.pugx.org/harimayco/laravel-menu/v/unstable)](https://packagist.org/packages/harimayco/laravel-menu) [![Total Downloads](https://poser.pugx.org/harimayco/laravel-menu/downloads)](https://packagist.org/packages/harimayco/laravel-menu) [![Monthly Downloads](https://poser.pugx.org/harimayco/laravel-menu/d/monthly)](https://packagist.org/packages/harimayco/laravel-menu)
+# Laravel Drag and Drop menu
+[![Latest Stable Version](https://poser.pugx.org/nguyendachuy/laravel-menu/v/stable)](https://packagist.org/packages/nguyendachuy/laravel-menu) [![Latest Unstable Version](https://poser.pugx.org/nguyendachuy/laravel-menu/v/unstable)](https://packagist.org/packages/nguyendachuy/laravel-menu) [![Total Downloads](https://poser.pugx.org/nguyendachuy/laravel-menu/downloads)](https://packagist.org/packages/nguyendachuy/laravel-menu) [![Monthly Downloads](https://poser.pugx.org/nguyendachuy/laravel-menu/d/monthly)](https://packagist.org/packages/nguyendachuy/laravel-menu)
 
 forked from https://github.com/lordmacu/wmenu
-![Laravel drag and drop menu](https://raw.githubusercontent.com/harimayco/wmenu-builder/master/screenshot.png)
+![Laravel drag and drop menu](https://raw.githubusercontent.com/nguyendachuy/laravel-menu/master/screenshot.png)
 
 ### Installation
 
 1. Run
 
 ```php
-composer require harimayco/laravel-menu
+composer require nguyendachuy/laravel-menu
 ```
 
 **_Step 2 & 3 are optional if you are using laravel 5.5_**
@@ -17,19 +17,19 @@ composer require harimayco/laravel-menu
 2. Add the following class, to "providers" array in the file config/app.php (optional on laravel 5.5)
 
 ```php
-Harimayco\Menu\MenuServiceProvider::class,
+NguyenHuy\Menu\MenuServiceProvider::class,
 ```
 
 3. add facade in the file config/app.php (optional on laravel 5.5)
 
 ```php
-'Menu' => Harimayco\Menu\Facades\Menu::class,
+'Menu' => NguyenHuy\Menu\Facades\Menu::class,
 ```
 
 4. Run publish
 
 ```php
-php artisan vendor:publish --provider="Harimayco\Menu\MenuServiceProvider"
+php artisan vendor:publish --provider="NguyenHuy\Menu\MenuServiceProvider"
 ```
 
 5. Configure (optional) in **_config/menu.php_** :
@@ -70,8 +70,8 @@ On your view blade file
 Call the model class
 
 ```php
-use Harimayco\Menu\Models\Menus;
-use Harimayco\Menu\Models\MenuItems;
+use NguyenHuy\Menu\Models\Menus;
+use NguyenHuy\Menu\Models\MenuItems;
 
 ```
 
@@ -144,7 +144,7 @@ Now inside your blade template file place the menu using this simple example
 ### Get Menu Items By Menu ID
 
 ```php
-use Harimayco\Menu\Facades\Menu;
+use NguyenHuy\Menu\Facades\Menu;
 ...
 /*
 Parameter: Menu ID
@@ -158,7 +158,7 @@ $menuList = Menu::get(1);
 In this example, you must have a menu named _Admin_
 
 ```php
-use Harimayco\Menu\Facades\Menu;
+use NguyenHuy\Menu\Facades\Menu;
 ...
 /*
 Parameter: Menu ID
@@ -180,4 +180,3 @@ you can edit the menu interface in **_resources/views/vendor/wmenu/menu-html.bla
 - Tested with laravel 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 6.x, 7.x
 
 ### KNOWN ISSUES
-- Not working with RTL websites [#21](https://github.com/harimayco/wmenu-builder/issues/21) (pull requests are welcome)

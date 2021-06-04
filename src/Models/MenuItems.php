@@ -1,6 +1,6 @@
 <?php
 
-namespace Harimayco\Menu\Models;
+namespace NguyenHuy\Menu\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -9,7 +9,11 @@ class MenuItems extends Model
 
     protected $table = null;
 
-    protected $fillable = ['label', 'link', 'parent', 'sort', 'class', 'menu', 'depth', 'role_id'];
+    protected $fillable = [
+        'label', 'link', 'parent',
+        'sort', 'class', 'menu',
+        'depth', 'role_id'
+    ];
 
     public function __construct(array $attributes = [])
     {
@@ -19,11 +23,11 @@ class MenuItems extends Model
 
     public function getsons($id)
     {
-        return $this->where("parent", $id)->get();
+        return $this->where('parent', $id)->get();
     }
     public function getall($id)
     {
-        return $this->where("menu", $id)->orderBy("sort", "asc")->get();
+        return $this->where('menu', $id)->orderBy('sort', 'asc')->get();
     }
 
     public static function getNextSortRoot($menu)
@@ -33,11 +37,11 @@ class MenuItems extends Model
 
     public function parent_menu()
     {
-        return $this->belongsTo('Harimayco\Menu\Models\Menus', 'menu');
+        return $this->belongsTo('NguyenHuy\Menu\Models\Menus', 'menu');
     }
 
     public function child()
     {
-        return $this->hasMany('Harimayco\Menu\Models\MenuItems', 'parent')->orderBy('sort', 'ASC');
+        return $this->hasMany('NguyenHuy\Menu\Models\MenuItems', 'parent')->orderBy('sort', 'ASC');
     }
 }

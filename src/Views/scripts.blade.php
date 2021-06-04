@@ -1,25 +1,14 @@
 <script>
-	var menus = {
-		"oneThemeLocationNoMenus" : "",
-		"moveUp" : "Move up",
-		"moveDown" : "Mover down",
-		"moveToTop" : "Move top",
-		"moveUnder" : "Move under of %s",
-		"moveOutFrom" : "Out from under  %s",
-		"under" : "Under %s",
-		"outFrom" : "Out from %s",
-		"menuFocus" : "%1$s. Element menu %2$d of %3$d.",
-		"subMenuFocus" : "%1$s. Menu of subelement %2$d of %3$s."
-	};
 	var arraydata = [];     
-	var addcustommenur= '{{ route("haddcustommenu") }}';
-	var updateitemr= '{{ route("hupdateitem")}}';
-	var generatemenucontrolr= '{{ route("hgeneratemenucontrol") }}';
-	var deleteitemmenur= '{{ route("hdeleteitemmenu") }}';
-	var deletemenugr= '{{ route("hdeletemenug") }}';
-	var createnewmenur= '{{ route("hcreatenewmenu") }}';
+	var addCustomMenur= '{{ route("hAddCustomMenu") }}';
+	var updateItemr= '{{ route("hUpdateItem")}}';
+	var generateMenuControlr= '{{ route("hGenerateMenuControl") }}';
+	var deleteItemMenur= '{{ route("hDeleteItemMenu") }}';
+	var deleteMenugr= '{{ route("hDeleteMenug") }}';
+	var createNewMenur= '{{ route("hCreateNewMenu") }}';
 	var csrftoken="{{ csrf_token() }}";
 	var menuwr = "{{ url()->current() }}";
+	var currentItem = "{{ request()->fullUrl() }}";
 
 	$.ajaxSetup({
 		headers: {
@@ -27,6 +16,5 @@
 		}
 	});
 </script>
-<script type="text/javascript" src="{{asset('vendor/harimayco-menu/scripts.js')}}"></script>
-<script type="text/javascript" src="{{asset('vendor/harimayco-menu/scripts2.js')}}"></script>
-<script type="text/javascript" src="{{asset('vendor/harimayco-menu/menu.js')}}"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/nestable2@1.6.0/jquery.nestable.min.js"></script>
+<script type="text/javascript" src="{{asset('vendor/nguyendachuy-menu/menu.js')}}"></script>

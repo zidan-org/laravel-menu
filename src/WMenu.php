@@ -1,40 +1,40 @@
 <?php
 
-namespace Harimayco\Menu;
+namespace NguyenHuy\Menu;
 
 use App\Http\Requests;
-use Harimayco\Menu\Models\Menus;
-use Harimayco\Menu\Models\MenuItems;
+use NguyenHuy\Menu\Models\Menus;
+use NguyenHuy\Menu\Models\MenuItems;
 use Illuminate\Support\Facades\DB;
 
 class WMenu
 {
-
     public function render()
     {
         $menu = new Menus();
-        $menuitems = new MenuItems();
+        // $menuitems = new MenuItems();
         $menulist = $menu->select(['id', 'name'])->get();
         $menulist = $menulist->pluck('name', 'id')->prepend('Select menu', 0)->all();
 
         //$roles = Role::all();
 
-        if ((request()->has("action") && empty(request()->input("menu"))) || request()->input("menu") == '0') {
-            return view('wmenu::menu-html')->with("menulist" , $menulist);
+        if ((request()->has("action") && empty(request()->input('menu'))) || request()->input('menu') == '0') {
+            return view('wmenu::menu-html')->with("menulist", $menulist);
         } else {
-
-            $menu = Menus::find(request()->input("menu"));
-            $menus = $menuitems->getall(request()->input("menu"));
-
+            $menu = Menus::find(request()->input('menu'));
+            $menus = self::get(request()->input('menu'));
             $data = ['menus' => $menus, 'indmenu' => $menu, 'menulist' => $menulist];
-            if( config('menu.use_roles')) {
-                $data['roles'] = DB::table(config('menu.roles_table'))->select([config('menu.roles_pk'),config('menu.roles_title_field')])->get();
+            if (config('menu.use_roles')) {
+                $data['roles'] = DB::table(config('menu.roles_table'))->select([
+                    config('menu.roles_pk'),
+                    config('menu.roles_title_field')
+                ])
+                    ->get();
                 $data['role_pk'] = config('menu.roles_pk');
                 $data['role_title_field'] = config('menu.roles_title_field');
             }
             return view('wmenu::menu-html', $data);
         }
-
     }
 
     public function scripts()
@@ -42,10 +42,17 @@ class WMenu
         return view('wmenu::scripts');
     }
 
-    public function select($name = "menu", $menulist = array())
+    public function select($name = "menu", $menulist = array(), $attributes = array())
     {
-        $html = '<select name="' . $name . '">';
-
+        $attribute_string = "";
+        if (count($attributes) > 0) {
+            $attribute_string = str_replace(
+                "=",
+                '="',
+                http_build_query($attributes, '', '" ', PHP_QUERY_RFC3986)
+            ) . '"';
+        }
+        $html = '<select name="' . $name . '" ' . $attribute_string . '>';
         foreach ($menulist as $key => $val) {
             $active = '';
             if (request()->input('menu') == $key) {
@@ -76,7 +83,7 @@ class WMenu
         $menuItem = new MenuItems;
         $menu_list = $menuItem->getall($menu_id);
 
-        $roots = $menu_list->where('menu', (integer) $menu_id)->where('parent', 0);
+        $roots = $menu_list->where('menu', (int) $menu_id)->where('parent', 0);
 
         $items = self::tree($roots, $menu_list);
         return $items;
@@ -101,5 +108,4 @@ class WMenu
 
         return $data_arr;
     }
-
 }
