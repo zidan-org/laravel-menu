@@ -21,6 +21,7 @@ class CreateMenuItemsWpTable extends Migration
             $table->unsignedBigInteger('parent')->default(0);
             $table->integer('sort')->default(0);
             $table->string('class')->nullable();
+            $table->enum('target', ['_self', '_blank'])->default('_self');
             $table->unsignedBigInteger('menu');
             $table->integer('depth')->default(0);
             $table->timestamps();

@@ -9,12 +9,22 @@ $(document).ajaxStart(function () {
 /**
  * change label
  */
-$(document).on('keyup', '.edit-menu-item-title' ,function(){
+$(document).on('keyup', '.edit-menu-item-title', function () {
     var title = $(this).val();
     var index = $('.edit-menu-item-title').index($(this));
     $('.menu-item-title').eq(index).html(title);
 });
-
+/**
+ * change url
+ */
+$(document).on('keyup', '.edit-menu-item-url', function () {
+    var url = $(this).val();
+    var index = $('.edit-menu-item-url').index($(this));
+    $('.menu-item-link').eq(index).html(url);
+});
+/**
+ * add item menu
+ */
 function addCustomMenu() {
     $.ajax({
         data: {
@@ -39,6 +49,7 @@ function updateItem(id = 0) {
         var clases = $('#clases_menu_' + id).val();
         var url = $('#url_menu_' + id).val();
         var icon = $('#icon_menu_' + id).val();
+        var target = $('#target_menu_' + id).val();
         var role_id = 0;
         if ($('#role_menu_' + id).length) {
             role_id = $('#role_menu_' + id).val();
@@ -49,6 +60,7 @@ function updateItem(id = 0) {
             clases: clases,
             url: url,
             icon: icon,
+            target: target,
             role_id: role_id,
             id: id
         };
@@ -73,12 +85,16 @@ function updateItem(id = 0) {
             var role = $(this)
                 .find('.edit-menu-item-role')
                 .val();
+            var target = $(this)
+                .find('select.edit-menu-item-role option:selected')
+                .val();
             arr_data.push({
                 id: id,
                 label: label,
                 class: clases,
                 link: url,
                 icon: icon,
+                target: target,
                 role_id: role
             });
         });
@@ -181,9 +197,13 @@ function createNewMenu() {
 
 $(document).ready(function () {
     if ($('#nestable').length) {
+        /**
+         * https://github.com/RamonSmit/Nestable2#configuration
+         */
         $('#nestable').nestable({
             expandBtnHTML: '',
             collapseBtnHTML: '',
+            maxDepth: 5, //number of levels an item can be nested
             callback: function (l, e) {
                 updateItem();
                 actualizarMenu(l.nestable('toArray'));

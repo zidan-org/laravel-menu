@@ -77,21 +77,19 @@
 							class="btn btn-primary menu-save ml-2">Create Menu</a>
 					@endif
 				</form>
-				<hr class="my-4">
-
-				<div class="card">
+				<div class="card mt-2">
 					<div class="card-body">
 						@if(request()->get('menu') != 0 && isset($menus) && count($menus) > 0)
 						<h3>Menu Structure</h3>
 						<div>
-							<p>
+							<p class="font-italic">
 								Place each item in the order you prefer. Click <i class="fa fa-pencil-square-o" aria-hidden="true"></i> to the right of the item to display more configuration options.
 							</p>
 						</div>
 						@elseif(request()->get('menu') == 0)
 						<h3>Menu Creation</h3>
 						<div>
-							<p>
+							<p class="font-italic">
 								Please enter the name and select "Create menu" button
 							</p>
 						</div>

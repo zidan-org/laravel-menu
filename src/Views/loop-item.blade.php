@@ -2,8 +2,12 @@
     <div class="card-header">
         <span class="dd-handle"><i class="fa fa-arrows" aria-hidden="true"></i></span>
         <span class="item-title">
-            <span class="menu-item-title"> 
+            <span class="menu-item-title font-weight-bold"> 
                 {{$m['label']}}
+            </span>
+            /
+            <span class="menu-item-link font-weight-light"> 
+                {{ \Illuminate\Support\Str::limit($m['link'], $limit = 30, $end = '...') }}
             </span>
             <span style="color: transparent;">|{{$m['id']}}|</span>
         </span>
@@ -24,6 +28,11 @@
                     name="idlabelmenu_{{$m['id']}}" value="{{$m['label']}}">
                 </div>
                 <div class="form-group">
+                    <label for="">Url</label>
+                    <input id="url_menu_{{$m['id']}}" class="form-control edit-menu-item-url" 
+                    name="url_menu_{{$m['id']}}" value="{{$m['link']}}">
+                </div>
+                <div class="form-group">
                     <label for="">Class CSS (optional)</label>
                     <input id="clases_menu_{{$m['id']}}" class="form-control edit-menu-item-classes" 
                     name="clases_menu_{{$m['id']}}" value="{{$m['class']}}">
@@ -32,11 +41,6 @@
                     <label for="">Icon</label>
                     <input id="icon_menu_{{$m['id']}}" class="form-control edit-menu-item-icon" 
                     name="icon_menu_{{$m['id']}}" value="{{$m['icon']}}">
-                </div>
-                <div class="form-group">
-                    <label for="">Url</label>
-                    <input id="url_menu_{{$m['id']}}" class="form-control edit-menu-item-url" 
-                    name="url_menu_{{$m['id']}}" value="{{$m['link']}}">
                 </div>
                 @if(!empty($roles))
                 <div class="form-group">
@@ -52,7 +56,21 @@
                     </select>
                 </div>
                 @endif
-                <div id="update-nav-menu">
+                <div class="form-group">
+                    @php
+                        $target = [
+                            '_self' => 'Open link directly',
+                            '_blank' => 'Open link in new tab',
+                        ]
+                    @endphp
+                    <label for="">Target</label>
+                    <select name="target" class="form-control edit-menu-item-target" id="target_menu_{{$m['id']}}">
+                        @foreach ($target as $key => $item)
+                            <option value="{{$key}}" @if($key == $m['target']) selected @endif>{{$item}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
                     <a onclick="deleteItem({{$m['id']}})" class="btn btn-danger btn-sm" 
                         id="delete-{{$m['id']}}" href="javascript:void(0)">Delete</a>
                     <a onclick="updateItem({{$m['id']}})" class="btn btn-primary btn-sm" 
