@@ -12,7 +12,7 @@ class MenuItems extends Model
     protected $fillable = [
         'label', 'link', 'parent',
         'sort', 'class', 'menu',
-        'depth', 'role_id'
+        'depth', 'role_id', 'icon', 'target'
     ];
 
     public function __construct(array $attributes = [])
