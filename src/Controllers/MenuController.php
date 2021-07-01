@@ -74,16 +74,21 @@ class MenuController extends Controller
 
     public function addCustomMenu(Request $request)
     {
-        $menuitem = new MenuItems();
-        $menuitem->label = $request->input('labelmenu');
-        $menuitem->link = $request->input('linkmenu');
-        $menuitem->icon = $request->input('iconmenu');
-        if (config('menu.use_roles')) {
-            $menuitem->role_id = $request->input('rolemenu') ? $request->input('rolemenu')  : 0;
+        if ($request->has('data')) {
+            foreach ($request->post('data') as $key => $value) {
+                $menuitem = new MenuItems();
+                $menuitem->label = $value['label'];
+                $menuitem->link = $value['url'];
+                $menuitem->icon = $value['icon'];
+                if (config('menu.use_roles')) {
+                    $menuitem->role_id = $value['role'] ?? 0;
+                }
+                $menuitem->menu = $value['id'];
+                $menuitem->sort = MenuItems::getNextSortRoot($value['id']);
+                $menuitem->save();
+            }
         }
-        $menuitem->menu = $request->input('idmenu');
-        $menuitem->sort = MenuItems::getNextSortRoot($request->input('idmenu'));
-        $menuitem->save();
+
         return response()->json([
             'resp' => 1
         ], 200);
@@ -99,7 +104,7 @@ class MenuController extends Controller
                 $menuitem = MenuItems::findOrFail($value['id']);
                 $menuitem->parent = $value['parent_id'] ?? 0;
                 $menuitem->sort = $key;
-                $menuitem->depth = $value['depth'] == 0 ? 0 : $value['depth'] - 1;
+                $menuitem->depth = $value['depth'] ?? 1;
                 if (config('menu.use_roles')) {
                     $menuitem->role_id = $request->input('role_id');
                 }

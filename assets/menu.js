@@ -20,19 +20,43 @@ $(document).on('keyup', '.edit-menu-item-title', function () {
 $(document).on('keyup', '.edit-menu-item-url', function () {
     var url = $(this).val();
     var index = $('.edit-menu-item-url').index($(this));
-    $('.menu-item-link').eq(index).html(url);
+    /**
+     * limit string
+     */
+    var result = url.slice(0, 30) + (url.length > 30 ? "..." : "");
+    $('.menu-item-link').eq(index).html(result);
 });
 /**
  * add item menu
+ * type : default or custom
  */
-function addCustomMenu() {
+function addCustomMenu(e, type) {
+    const data = [];
+    const form = $(e).parents('form');
+    if (type == "default") {
+        data.push({
+            label: form.find('input[name="label"]').val(),
+            url: form.find('input[name="url"]').val(),
+            role: form.find('select[name="role"]').val(),
+            icon: form.find('input[name="icon"]').val(),
+            id: $('#idmenu').val()
+        });
+    } else {
+        const selected = form.find('select.data-select option:selected');
+        for (let index = 0; index < selected.length; index++) {
+            const element = $(selected[index]);
+            data.push({
+                label: element.text(),
+                url: element.attr('data-url'),
+                role: form.find('select[name="role"]').val(),
+                icon: element.attr('data-icon'),
+                id: $('#idmenu').val()
+            });
+        }
+    }
     $.ajax({
         data: {
-            labelmenu: $('#form-create-item-menu input[name="label"]').val(),
-            linkmenu: $('#form-create-item-menu input[name="url"]').val(),
-            rolemenu: $('#form-create-item-menu select[name="role"]').val(),
-            iconmenu: $('#form-create-item-menu input[name="icon"]').val(),
-            idmenu: $('#idmenu').val()
+            data: data
         },
         url: addCustomMenur,
         type: 'POST',
@@ -86,7 +110,7 @@ function updateItem(id = 0) {
                 .find('.edit-menu-item-role')
                 .val();
             var target = $(this)
-                .find('select.edit-menu-item-role option:selected')
+                .find('select.edit-menu-item-target option:selected')
                 .val();
             arr_data.push({
                 id: id,
