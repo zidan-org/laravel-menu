@@ -4,7 +4,16 @@
 
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <link href="{{asset('vendor/nguyendachuy-menu/style.css')}}" rel="stylesheet">
-
+<style>
+	/**
+	Fixes for boostrap 4.3.1*/
+	/* #nguyen-huy .card-header{
+		display: block;
+	}
+	#nguyen-huy .jumbotron .container{
+		padding-top: 5px;
+	} */
+</style>
 <div id="nguyen-huy" class="card mt-2 mb-2">
 	<div class="card-header">
 		<form method="GET" action="{{ $currentUrl }}" class="form-inline">
@@ -37,6 +46,15 @@
 							]
 						];
 					@endphp
+					{{-- @php
+						$pages = \App\Pages::get(['id', 'title'])->map(function($page){
+							return [
+								'url' => $page->getLink(),
+								'icon' => '',
+								'label' => $page->title,
+							];
+						});
+					@endphp --}}
 					<div class="form-group">
 						<label for="label">Select Pages</label>
 						<!-- <select name="pages" class="form-control data-select" required> -->
@@ -50,6 +68,27 @@
 							@endforeach
 						</select>
 					</div>
+					{{-- @php
+						$blogs = \App\Blog::get(['id', 'title'])->map(function($blog){
+							return [
+								'url' => $blog->getLink(),
+								'icon' => '',
+								'label' => $blog->title,
+							];
+						});
+					@endphp
+					<div class="form-group">
+						<label for="label">Select Blogs</label>
+						<select name="blogs[]" multiple class="form-control data-select" required>
+							@foreach ($blogs as $blog)
+								<option 
+									value="{{$blog['url']}}" 
+									data-icon="{{$blog['icon']}}"
+									data-url="{{$blog['url']}}"
+									>{{$blog['label']}}</option>
+							@endforeach
+						</select>
+					</div> --}}
 					@if(!empty($roles))
 					<div class="form-group">
 						<label for="role">Example select</label>
