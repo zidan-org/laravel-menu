@@ -18,8 +18,11 @@ class WMenu
 
         //$roles = Role::all();
 
-        if ((request()->has("action") && empty(request()->input('menu'))) || request()->input('menu') == '0') {
-            return view('wmenu::menu-html')->with("menulist", $menulist);
+        if (
+            (request()->has('action') && empty(request()->input('menu')))
+            || request()->input('menu') == '0'
+        ) {
+            return view('nguyendachuy-menu::menu-html')->with("menulist", $menulist);
         } else {
             $menu = Menus::find(request()->input('menu'));
             $menus = self::get(request()->input('menu'));
@@ -33,13 +36,13 @@ class WMenu
                 $data['role_pk'] = config('menu.roles_pk');
                 $data['role_title_field'] = config('menu.roles_title_field');
             }
-            return view('wmenu::menu-html', $data);
+            return view('nguyendachuy-menu::menu-html', $data);
         }
     }
 
     public function scripts()
     {
-        return view('wmenu::scripts');
+        return view('nguyendachuy-menu::scripts');
     }
 
     public function select($name = "menu", $menulist = array(), $attributes = array())

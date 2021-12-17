@@ -29,7 +29,7 @@ NguyenHuy\Menu\MenuServiceProvider::class,
 4. Run publish
 
 ```php
-php artisan vendor:publish --provider="NguyenHuy\Menu\MenuServiceProvider"
+php artisan vendor:publish --provider="NguyenHuy\Menu\Providers\MenuServiceProvider"
 ```
 
 5. Configure (optional) in **_config/menu.php_** :
@@ -169,4 +169,4 @@ $menuList = Menu::getByName('Admin');
 
 ### Customization
 
-you can edit the menu interface in **_resources/views/vendor/wmenu/menu-html.blade.php_**
+you can edit the menu interface in **_resources/views/vendor/nguyendachuy-menu/menu-html.blade.php_**

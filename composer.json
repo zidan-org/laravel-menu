@@ -1,33 +1,38 @@
 {
-    "name": "nguyendachuy/laravel-menu",
-    "description": "drag and drop menu generator for laravel 5",
-    "keywords": ["Laravel", "Menu", "Bootstrap", "Builder"],
-    "authors": [
-    	{
-            "name": "Nguyen Dac Huy",
-            "email": "huy.cit@gmail.com",
-            "role": "Developer"
-        }
-    ],
-    "require": {
-        "php": ">=7.0",
-        "illuminate/support": "5.* || 6.* || 7.* || 8.*"
-    },
-    "autoload": {
-        "psr-4": {
-          "NguyenHuy\\Menu\\": "src"
-        }
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "NguyenHuy\\Menu\\MenuServiceProvider"
-            ],
-            "aliases": {
-                "Menu": "NguyenHuy\\Menu\\Facades\\Menu"
-            }
-        }
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+  "name": "nguyendachuy/laravel-menu",
+  "description": "drag and drop menu generator for laravel 5",
+  "keywords": [
+    "Laravel",
+    "Menu",
+    "Bootstrap",
+    "Builder"
+  ],
+  "authors": [
+    {
+      "name": "Nguyen Dac Huy",
+      "email": "huy.cit@gmail.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=7.0",
+    "illuminate/support": "5.* || 6.* || 7.* || 8.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "NguyenHuy\\Menu\\": "src"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "NguyenHuy\\Menu\\Providers\\MenuServiceProvider"
+      ],
+      "aliases": {
+        "Menu": "NguyenHuy\\Menu\\Facades\\Menu"
+      }
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }

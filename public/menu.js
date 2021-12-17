@@ -30,10 +30,14 @@ $(document).on('keyup', '.edit-menu-item-url', function () {
  * add item menu
  * type : default or custom
  */
-function addCustomMenu(e, type) {
-    const data = [];
-    const form = $(e).parents('form');
+function addItemMenu(e, type) {
+    let data = [];
+    let form = $(e).parents('form');
     if (type == "default") {
+        if (!form.find('input[name="label"]').val() || !form.find('input[name="url"]').val()) {
+            alert('Please enter label or url');
+            return;
+        }
         data.push({
             label: form.find('input[name="label"]').val(),
             url: form.find('input[name="url"]').val(),
@@ -42,23 +46,31 @@ function addCustomMenu(e, type) {
             id: $('#idmenu').val()
         });
     } else {
-        const selected = form.find('select.data-select option:selected');
-        for (let index = 0; index < selected.length; index++) {
-            const element = $(selected[index]);
+        let checkbox = form.find('input[name="menu_id"]:checked');
+        let flag = false;
+        for (let index = 0; index < checkbox.length; index++) {
+            let element = $(checkbox[index]);
             data.push({
-                label: element.text(),
+                label: element.attr('data-label'),
                 url: element.attr('data-url'),
                 role: form.find('select[name="role"]').val(),
                 icon: element.attr('data-icon'),
                 id: $('#idmenu').val()
             });
+            if (!element.attr('data-label') || !element.attr('data-url')) {
+                flag = true;
+            }
+        }
+        if (flag) {
+            alert('Please enter label or url');
+            return;
         }
     }
     $.ajax({
         data: {
             data: data
         },
-        url: addCustomMenur,
+        url: URL_CREATE_ITEM_MENU,
         type: 'POST',
         success: function (response) {
             window.location.reload();
@@ -69,16 +81,19 @@ function addCustomMenu(e, type) {
 
 function updateItem(id = 0) {
     if (id) {
-        var label = $('#idlabelmenu_' + id).val();
-        var clases = $('#clases_menu_' + id).val();
-        var url = $('#url_menu_' + id).val();
-        var icon = $('#icon_menu_' + id).val();
-        var target = $('#target_menu_' + id).val();
+        var label = $('#label-menu-' + id).val();
+        var clases = $('#clases-menu-' + id).val();
+        var url = $('#url-menu-' + id).val();
+        var icon = $('#icon-menu-' + id).val();
+        var target = $('#target-menu-' + id).val();
         var role_id = 0;
         if ($('#role_menu_' + id).length) {
             role_id = $('#role_menu_' + id).val();
         }
-
+        if (!label || !url) {
+            alert('Please enter label or url');
+            return;
+        }
         var data = {
             label: label,
             clases: clases,
@@ -90,6 +105,7 @@ function updateItem(id = 0) {
         };
     } else {
         var arr_data = [];
+        let flag = false;
         $('.menu-item-settings').each(function (k, v) {
             var id = $(this)
                 .find('.edit-menu-item-id')
@@ -112,6 +128,9 @@ function updateItem(id = 0) {
             var target = $(this)
                 .find('select.edit-menu-item-target option:selected')
                 .val();
+            if (!label || !url) {
+                flag = true;
+            }
             arr_data.push({
                 id: id,
                 label: label,
@@ -122,14 +141,17 @@ function updateItem(id = 0) {
                 role_id: role
             });
         });
-
+        if (flag) {
+            alert('Please enter label or url');
+            return;
+        }
         var data = {
-            arraydata: arr_data
+            dataItem: arr_data
         };
     }
     $.ajax({
         data: data,
-        url: updateItemr,
+        url: URL_UPDATE_ITEM_MENU,
         type: 'POST',
         beforeSend: function (xhr) {
             if (id) { }
@@ -142,22 +164,26 @@ function updateItem(id = 0) {
 }
 
 function actualizarMenu(serialize) {
-    $.ajax({
-        dataType: 'json',
-        data: {
-            data: serialize,
-            menuName: $('#menu-name').val(),
-            idMenu: $('#idmenu').val()
-        },
-        url: generateMenuControlr,
-        type: 'POST',
-        success: function (response) {
-            /**
-             * update text option
-             */
-            $(`select[name="menu"] option[value="${$('#idmenu').val()}"]`).html($('#menu-name').val());
-        }
-    });
+    if ($('#menu-name').val()) {
+        $.ajax({
+            dataType: 'json',
+            data: {
+                data: serialize,
+                menuName: $('#menu-name').val(),
+                idMenu: $('#idmenu').val()
+            },
+            url: URL_UPDATE_ITEMS_AND_MENU,
+            type: 'POST',
+            success: function (response) {
+                /**
+                 * update text option
+                 */
+                $(`select[name="menu"] option[value="${$('#idmenu').val()}"]`).html($('#menu-name').val());
+            }
+        });
+    }else{
+        alert('Please enter name menu!');
+    }
 }
 
 function deleteItem(id) {
@@ -166,10 +192,10 @@ function deleteItem(id) {
         data: {
             id: id
         },
-        url: deleteItemMenur,
+        url: URL_DELETE_ITEM_MENU,
         type: 'POST',
         success: function (response) {
-            window.location = currentItem;
+            window.location = URL_FULL;
         }
     });
 }
@@ -182,12 +208,12 @@ function deleteMenu() {
             data: {
                 id: $('#idmenu').val()
             },
-            url: deleteMenugr,
+            url: URL_DELETE_MENU,
             type: 'POST',
             success: function (response) {
                 if (!response.error) {
                     alert(response.resp);
-                    window.location = menuwr;
+                    window.location = URL_CURRENT;
                 } else {
                     alert(response.resp);
                 }
@@ -203,16 +229,16 @@ function createNewMenu() {
         $.ajax({
             dataType: 'json',
             data: {
-                menuname: $('#menu-name').val()
+                name: $('#menu-name').val()
             },
-            url: createNewMenur,
+            url: URL_CREATE_MENU,
             type: 'POST',
             success: function (response) {
-                window.location = menuwr + '?menu=' + response.resp;
+                window.location = URL_CURRENT + '?menu=' + response.resp;
             }
         });
     } else {
-        alert('Enter menu name!');
+        alert('Please enter name menu');
         $('#menu-name').focus();
         return false;
     }
