@@ -83,6 +83,7 @@ A basic two-level menu can be displayed in your blade template
 ```php
 
 /* get menu by id*/
+
 $menu = Menus::find(1);
 /* or by name */
 $menu = Menus::where('name','Test Menu')->first();
