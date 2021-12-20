@@ -17,7 +17,7 @@ composer require nguyendachuy/laravel-menu
 2. Add the following class, to "providers" array in the file config/app.php (optional on laravel 5.5)
 
 ```php
-NguyenHuy\Menu\MenuServiceProvider::class,
+NguyenHuy\Menu\Providers\MenuServiceProvider::class,
 ```
 
 3. add facade in the file config/app.php (optional on laravel 5.5)
