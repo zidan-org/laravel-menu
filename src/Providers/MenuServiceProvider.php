@@ -40,6 +40,8 @@ class MenuServiceProvider extends ServiceProvider
             => database_path('migrations/2017_08_11_074006_create_menu_items_wp_table.php'),
             __DIR__ . '/../../database/migrations/2019_01_05_293551_add-role-id-to-menu-items-table.php'
             => database_path('2019_01_05_293551_add-role-id-to-menu-items-table.php'),
+            __DIR__ . '/../../database/migrations/2022_07_06_000123_add_class_to_menu_table.php'
+            => database_path('migrations/2022_07_15_000123_add_class_to_menu_table.php'),
         ], 'laravel-menu-migrations');
     }
 
@@ -59,5 +61,16 @@ class MenuServiceProvider extends ServiceProvider
             __DIR__ . '/../../config/menu.php',
             'menu'
         );
+    }
+    protected function migrationExists($mgr)
+    {
+        $path = database_path('migrations/');
+        $files = scandir($path);
+        $pos = false;
+        foreach ($files as &$value) {
+            $pos = strpos($value, $mgr);
+            if ($pos !== false) return true;
+        }
+        return false;
     }
 }

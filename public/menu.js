@@ -170,7 +170,8 @@ function actualizarMenu(serialize) {
             data: {
                 data: serialize,
                 menuName: $('#menu-name').val(),
-                idMenu: $('#idmenu').val()
+                idMenu: $('#idmenu').val(),
+                class: $('#menu-class').val()
             },
             url: URL_UPDATE_ITEMS_AND_MENU,
             type: 'POST',
@@ -229,7 +230,8 @@ function createNewMenu() {
         $.ajax({
             dataType: 'json',
             data: {
-                name: $('#menu-name').val()
+                name: $('#menu-name').val(),
+                class: $('#menu-class').val(),
             },
             url: URL_CREATE_MENU,
             type: 'POST',

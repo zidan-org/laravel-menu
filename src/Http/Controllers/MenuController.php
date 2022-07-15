@@ -14,6 +14,7 @@ class MenuController extends Controller
     {
         $menu = new Menus();
         $menu->name = $request->input('name');
+        $menu->class = $request->input('class', null);
         $menu->save();
         return response()->json([
             'resp' => $menu->id
@@ -34,6 +35,7 @@ class MenuController extends Controller
     {
         $menu = Menus::findOrFail($request->input('idMenu'));
         $menu->name = $request->input('menuName');
+        $menu->class = $request->input('class', null);
         $menu->save();
         if (is_array($request->input('data'))) {
             foreach ($request->input('data') as $key => $value) {
