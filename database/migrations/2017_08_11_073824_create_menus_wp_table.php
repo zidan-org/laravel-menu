@@ -13,11 +13,13 @@ class CreateMenusWpTable extends Migration
      */
     public function up()
     {
-        Schema::create(config('menu.table_prefix') . config('menu.table_name_menus'), function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name');
-            $table->timestamps();
-        });
+        if (!Schema::hasTable(config('menu.table_prefix') . config('menu.table_name_menus'))) {
+            Schema::create(config('menu.table_prefix') . config('menu.table_name_menus'), function (Blueprint $table) {
+                $table->bigIncrements('id');
+                $table->string('name');
+                $table->timestamps();
+            });
+        }
     }
 
     /**
