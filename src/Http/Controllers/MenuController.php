@@ -2,9 +2,11 @@
 
 namespace NguyenHuy\Menu\Http\Controllers;
 
-use NguyenHuy\Menu\Facades\Menu;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use NguyenHuy\Menu\Events\CreatedMenuEvent;
+use NguyenHuy\Menu\Events\DestroyMenuEvent;
+use NguyenHuy\Menu\Events\UpdatedMenuEvent;
 use NguyenHuy\Menu\Models\Menus;
 use NguyenHuy\Menu\Models\MenuItems;
 
@@ -16,6 +18,9 @@ class MenuController extends Controller
         $menu->name = $request->input('name');
         $menu->class = $request->input('class', null);
         $menu->save();
+
+        event(new CreatedMenuEvent($menu));
+
         return response()->json([
             'resp' => $menu->id
         ], 200);
@@ -25,6 +30,8 @@ class MenuController extends Controller
     {
         $menudelete = Menus::findOrFail($request->input('id'));
         $menudelete->delete();
+
+        event(new DestroyMenuEvent($menudelete));
 
         return response()->json([
             'resp' => 'You delete this item'
@@ -104,6 +111,9 @@ class MenuController extends Controller
             }
             $menuitem->save();
         }
+
+        event(new UpdatedMenuEvent($dataItem));
+
         return response()->json([
             'resp' => 1
         ], 200);
@@ -113,6 +123,7 @@ class MenuController extends Controller
     {
         $menuitem = MenuItems::findOrFail($request->input('id'));
         $menuitem->delete();
+
         return response()->json([
             'resp' => 1
         ], 200);
