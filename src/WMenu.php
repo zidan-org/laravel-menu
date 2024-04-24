@@ -2,7 +2,6 @@
 
 namespace NguyenHuy\Menu;
 
-use App\Http\Requests;
 use NguyenHuy\Menu\Models\Menus;
 use NguyenHuy\Menu\Models\MenuItems;
 use Illuminate\Support\Facades\DB;

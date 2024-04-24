@@ -24,4 +24,12 @@ return [
     'roles_pk' => 'id', // primary key of the roles table
 
     'roles_title_field' => 'name', // display name (field) of the roles table
+
+    /**
+     * Cache configuration
+     */
+    'cache' => [
+        'enabled' => true, // set to false to disable cache
+        'minutes' => 60, // cache time in minutes (default: 60)
+    ],
 ];

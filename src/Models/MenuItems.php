@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class MenuItems extends Model
 {
-
+    use Traits\QueryCacheTrait;
+    
     protected $table = null;
 
     protected $fillable = [

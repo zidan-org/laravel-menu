@@ -1,11 +1,13 @@
 {
   "name": "nguyendachuy/laravel-menu",
-  "description": "drag and drop menu generator for laravel 5",
+  "description": "Laravel Menu Builder | Drag & Drop | Bootstrap | Laravel 7 | Laravel 8 | Laravel 9 | Laravel 10 | Laravel 11",
   "keywords": [
     "Laravel",
     "Menu",
     "Bootstrap",
-    "Builder"
+    "Builder",
+    "Drag",
+    "Drop"
   ],
   "authors": [
     {
@@ -15,8 +17,8 @@
     }
   ],
   "require": {
-    "php": ">=7.0",
-    "illuminate/support": "5.* || 6.* || 7.* || 8.* || 9.* || 10.*"
+    "php": ">=7.2.5",
+    "illuminate/support": "7.* || 8.* || 9.* || 10.* || 11.*"
   },
   "autoload": {
     "psr-4": {

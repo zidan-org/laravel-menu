@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Menus extends Model
 {
+    use Traits\QueryCacheTrait;
+
     protected $table = 'menus';
 
     public function __construct(array $attributes = [])
