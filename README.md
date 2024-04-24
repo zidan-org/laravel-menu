@@ -155,4 +155,4 @@ $menuList = Menu::getByName('Admin');
 
 ### Customization
 
-you can edit the menu interface in **_resources/views/vendor/nguyendachuy-menu/menu-html.blade.php_**
+You can edit the menu interface in **_resources/views/vendor/nguyendachuy-menu/menu-html.blade.php_**
