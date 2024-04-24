@@ -11,28 +11,13 @@
 ```php
 composer require nguyendachuy/laravel-menu
 ```
-
-**_Step 2 & 3 are optional if you are using laravel 5.5_**
-
-2. Add the following class, to "providers" array in the file config/app.php (optional on laravel 5.5)
-
-```php
-NguyenHuy\Menu\Providers\MenuServiceProvider::class,
-```
-
-3. add facade in the file config/app.php (optional on laravel 5.5)
-
-```php
-'Menu' => NguyenHuy\Menu\Facades\Menu::class,
-```
-
-4. Run publish
+2. Run publish
 
 ```php
 php artisan vendor:publish --provider="NguyenHuy\Menu\Providers\MenuServiceProvider"
 ```
 
-5. Configure (optional) in **_config/menu.php_** :
+3. Configure (optional) in **_config/menu.php_** :
 
 - **_CUSTOM MIDDLEWARE:_** You can add you own middleware
 - **_TABLE PREFIX:_** By default this package will create 2 new tables named "menus" and "menu_items" but you can still add your own table prefix avoiding conflict with existing table
@@ -40,7 +25,7 @@ php artisan vendor:publish --provider="NguyenHuy\Menu\Providers\MenuServiceProvi
 - **_Custom routes_** If you want to edit the route path you can edit the field
 - **_Role Access_** If you want to enable roles (permissions) on menu items
 
-6. Run migrate
+4. Run migrate
 
 ```php
 php artisan migrate
