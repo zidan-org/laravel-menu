@@ -3,7 +3,6 @@
 namespace NguyenHuy\Menu\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Foundation\AliasLoader;
 use NguyenHuy\Menu\WMenu;
 
 class MenuServiceProvider extends ServiceProvider

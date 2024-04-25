@@ -24,6 +24,9 @@ php artisan vendor:publish --provider="NguyenHuy\Menu\Providers\MenuServiceProvi
 - **_TABLE NAMES_** If you want use specific name of tables you have to modify that and the migrations
 - **_Custom routes_** If you want to edit the route path you can edit the field
 - **_Role Access_** If you want to enable roles (permissions) on menu items
+- **_CACHE ENABLED:_** Set this to `true` if you want to enable caching for menu items. Default is `false`.
+- **_CACHE KEY PREFIX:_** The prefix to use for cache keys. Default is `'menu'`.
+- **_CACHE TTL:_** The time-to-live (in minutes) for cached menu items. Default is `60`.
 
 4. Run migrate
 

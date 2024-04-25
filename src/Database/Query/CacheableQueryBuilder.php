@@ -27,6 +27,11 @@ class CacheableQueryBuilder extends Builder
     protected $enabled = false;
 
     /**
+     * Prefix for the cache key.
+     */
+    protected $prefix = 'menu';
+
+    /**
      * Create a new query builder instance.
      * @param \Illuminate\Database\ConnectionInterface $connection
      * @param \Illuminate\Database\Query\Grammars\Grammar|null $grammar
@@ -45,6 +50,7 @@ class CacheableQueryBuilder extends Builder
         // Load configuration values from the menu.cache configuration file
         $this->minutes = config('menu.cache.minutes', $this->minutes);
         $this->enabled = config('menu.cache.enabled', $this->enabled);
+        $this->prefix = config('menu.cache.prefix', $this->prefix);
     }
 
 
@@ -223,7 +229,7 @@ class CacheableQueryBuilder extends Builder
      */
     protected function getModelCacheKey(string $modelClass = null): string
     {
-        return 'menu_' . ($modelClass ?? $this->modelClass);
+        return $this->prefix . '_' . ($modelClass ?? $this->modelClass);
     }
 
     /**

@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Configuration file for the Laravel Menu package.
+ *
+ * This file contains various configuration options for the package.
+ * You can customize the middleware, table names, route prefix, and more.
+ *
+ * @return array
+ */
+
 return [
     /* you can add your own middleware here */
     'middleware' => [],
@@ -29,7 +38,8 @@ return [
      * Cache configuration
      */
     'cache' => [
-        'enabled' => true, // set to false to disable cache
+        'enabled' => false, // enable or disable cache
         'minutes' => 60, // cache time in minutes (default: 60)
+        'prefix' => 'menu', // prefix for cache key
     ],
 ];
