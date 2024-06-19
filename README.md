@@ -1,8 +1,4 @@
 # Laravel Drag and Drop menu
-[![Latest Stable Version](https://poser.pugx.org/zidan/laravel-menu/v)](//packagist.org/packages/zidan/laravel-menu) [![Total Downloads](https://poser.pugx.org/zidan/laravel-menu/downloads)](//packagist.org/packages/zidan/laravel-menu) [![Latest Unstable Version](https://poser.pugx.org/zidan/laravel-menu/v/unstable)](//packagist.org/packages/zidan/laravel-menu) [![License](https://poser.pugx.org/zidan/laravel-menu/license)](//packagist.org/packages/zidan/laravel-menu)
-
-
-![Laravel drag and drop menu](https://raw.githubusercontent.com/zidan/laravel-menu/master/screenshot.png)
 
 ### Installation
 
