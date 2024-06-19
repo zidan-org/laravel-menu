@@ -5,7 +5,7 @@
 1. Run
 
 ```php
-composer require zidan/laravel-menu
+composer require zidan-org/laravel-menu
 ```
 2. Run publish
 
