@@ -82,7 +82,7 @@
     @if (isset($m['child']) && count($m['child']) > 0)
     <ol class="dd-list">
         @foreach($m['child'] as $_m)
-            @include('nguyendachuy-menu::partials.loop-item', ['m' => $_m, 'key' => 1])
+            @include('zidan-menu::partials.loop-item', ['m' => $_m, 'key' => 1])
         @endforeach
     </ol>
     @endif

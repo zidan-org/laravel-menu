@@ -1,20 +1,20 @@
 # Laravel Drag and Drop menu
-[![Latest Stable Version](https://poser.pugx.org/nguyendachuy/laravel-menu/v)](//packagist.org/packages/nguyendachuy/laravel-menu) [![Total Downloads](https://poser.pugx.org/nguyendachuy/laravel-menu/downloads)](//packagist.org/packages/nguyendachuy/laravel-menu) [![Latest Unstable Version](https://poser.pugx.org/nguyendachuy/laravel-menu/v/unstable)](//packagist.org/packages/nguyendachuy/laravel-menu) [![License](https://poser.pugx.org/nguyendachuy/laravel-menu/license)](//packagist.org/packages/nguyendachuy/laravel-menu)
+[![Latest Stable Version](https://poser.pugx.org/zidan/laravel-menu/v)](//packagist.org/packages/zidan/laravel-menu) [![Total Downloads](https://poser.pugx.org/zidan/laravel-menu/downloads)](//packagist.org/packages/zidan/laravel-menu) [![Latest Unstable Version](https://poser.pugx.org/zidan/laravel-menu/v/unstable)](//packagist.org/packages/zidan/laravel-menu) [![License](https://poser.pugx.org/zidan/laravel-menu/license)](//packagist.org/packages/zidan/laravel-menu)
 
 
-![Laravel drag and drop menu](https://raw.githubusercontent.com/nguyendachuy/laravel-menu/master/screenshot.png)
+![Laravel drag and drop menu](https://raw.githubusercontent.com/zidan/laravel-menu/master/screenshot.png)
 
 ### Installation
 
 1. Run
 
 ```php
-composer require nguyendachuy/laravel-menu
+composer require zidan/laravel-menu
 ```
 2. Run publish
 
 ```php
-php artisan vendor:publish --provider="NguyenHuy\Menu\Providers\MenuServiceProvider"
+php artisan vendor:publish --provider="Zidan\Menu\Providers\MenuServiceProvider"
 ```
 
 3. Configure (optional) in **_config/menu.php_** :
@@ -58,8 +58,8 @@ On your view blade file
 Call the model class
 
 ```php
-use NguyenHuy\Menu\Models\Menus;
-use NguyenHuy\Menu\Models\MenuItems;
+use Zidan\Menu\Models\Menus;
+use Zidan\Menu\Models\MenuItems;
 
 ```
 
@@ -133,7 +133,7 @@ Now inside your blade template file place the menu using this simple example
 ### Get Menu Items By Menu ID
 
 ```php
-use NguyenHuy\Menu\Facades\Menu;
+use Zidan\Menu\Facades\Menu;
 ...
 /*
 Parameter: Menu ID
@@ -147,7 +147,7 @@ $menuList = Menu::get(1);
 In this example, you must have a menu named _Admin_
 
 ```php
-use NguyenHuy\Menu\Facades\Menu;
+use Zidan\Menu\Facades\Menu;
 ...
 /*
 Parameter: Menu ID
@@ -158,4 +158,4 @@ $menuList = Menu::getByName('Admin');
 
 ### Customization
 
-You can edit the menu interface in **_resources/views/vendor/nguyendachuy-menu/menu-html.blade.php_**
+You can edit the menu interface in **_resources/views/vendor/zidan-menu/menu-html.blade.php_**

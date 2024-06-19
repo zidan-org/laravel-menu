@@ -1,6 +1,6 @@
 <?php
 
-namespace NguyenHuy\Menu\Facades;
+namespace Zidan\Menu\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
@@ -12,6 +12,6 @@ class Menu extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'nguyendachuy-menu';
+        return 'zidan-menu';
     }
 }

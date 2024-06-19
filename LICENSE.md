@@ -1,7 +1,7 @@
 The MIT License (MIT)
 
-Copyright (c) 2021 All contributors from GitHub
-Copyright (c) 2021 NguyenDacHuy
+Copyright (c) 2024 All contributors from GitHub
+Copyright (c) 2024 Zidan Team
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

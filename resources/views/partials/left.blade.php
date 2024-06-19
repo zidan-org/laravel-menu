@@ -36,7 +36,7 @@
             ]
         ];
     @endphp
-    @include('nguyendachuy-menu::accordions.default', [
+    @include('zidan-menu::accordions.default', [
         'name' => 'Pages', 
         'urls' => $pages, 
         'show' => true
@@ -70,8 +70,8 @@
             ]
         ];
     @endphp
-    @include('nguyendachuy-menu::accordions.default', ['name' => 'Categories', 'urls' => $categories])
+    @include('zidan-menu::accordions.default', ['name' => 'Categories', 'urls' => $categories])
 
-    @include('nguyendachuy-menu::accordions.add-link', ['name' => 'Add Link'])
+    @include('zidan-menu::accordions.add-link', ['name' => 'Add Link'])
 </div>
 @endif

@@ -1,6 +1,6 @@
 <?php
 
-namespace NguyenHuy\Menu\Models;
+namespace Zidan\Menu\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -23,14 +23,14 @@ class Menus extends Model
 
     public function items()
     {
-        return $this->hasMany('NguyenHuy\Menu\Models\MenuItems', 'menu')
+        return $this->hasMany('Zidan\Menu\Models\MenuItems', 'menu')
             ->with('child')
             ->where('parent', 0)
             ->orderBy('sort', 'ASC');
     }
     public function itemAndChilds()
     {
-        return $this->hasMany('NguyenHuy\Menu\Models\MenuItems', 'menu')
+        return $this->hasMany('Zidan\Menu\Models\MenuItems', 'menu')
             ->with('child')
             ->orderBy('sort', 'ASC');
     }

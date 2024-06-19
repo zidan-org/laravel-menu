@@ -22,16 +22,16 @@
   },
   "autoload": {
     "psr-4": {
-      "NguyenHuy\\Menu\\": "src"
+      "Zidan\\Menu\\": "src"
     }
   },
   "extra": {
     "laravel": {
       "providers": [
-        "NguyenHuy\\Menu\\Providers\\MenuServiceProvider"
+        "Zidan\\Menu\\Providers\\MenuServiceProvider"
       ],
       "aliases": {
-        "Menu": "NguyenHuy\\Menu\\Facades\\Menu"
+        "Menu": "Zidan\\Menu\\Facades\\Menu"
       }
     }
   },

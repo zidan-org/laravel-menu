@@ -3,7 +3,7 @@
 @endphp
 
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-<link href="{{asset('vendor/nguyendachuy-menu/style.css')}}" rel="stylesheet">
+<link href="{{asset('vendor/zidan-menu/style.css')}}" rel="stylesheet">
 
 <div id="nguyen-huy" class="card mt-2 mb-2">
 	<div class="card-header">
@@ -21,11 +21,11 @@
 		<input type="hidden" id="idmenu" value="{{$indmenu->id ?? null}}"/>
 		<div class="row">
 			<div class="col-md-4">
-				@include('nguyendachuy-menu::partials.left')
+				@include('zidan-menu::partials.left')
 			</div>
 			{{-- /col-md-4 --}}
 			<div class="col-md-8">
-				@include('nguyendachuy-menu::partials.right')
+				@include('zidan-menu::partials.right')
 			</div>
 		</div>
 	</div>

@@ -1,8 +1,8 @@
 <?php
 
-namespace NguyenHuy\Menu\Models\Traits;
+namespace Zidan\Menu\Models\Traits;
 
-use NguyenHuy\Menu\Database\Query\CacheableQueryBuilder;
+use Zidan\Menu\Database\Query\CacheableQueryBuilder;
 
 trait QueryCacheTrait
 {

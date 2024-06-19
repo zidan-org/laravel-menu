@@ -1,14 +1,14 @@
 <?php
 
-namespace NguyenHuy\Menu\Http\Controllers;
+namespace Zidan\Menu\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use NguyenHuy\Menu\Events\CreatedMenuEvent;
-use NguyenHuy\Menu\Events\DestroyMenuEvent;
-use NguyenHuy\Menu\Events\UpdatedMenuEvent;
-use NguyenHuy\Menu\Models\Menus;
-use NguyenHuy\Menu\Models\MenuItems;
+use Zidan\Menu\Events\CreatedMenuEvent;
+use Zidan\Menu\Events\DestroyMenuEvent;
+use Zidan\Menu\Events\UpdatedMenuEvent;
+use Zidan\Menu\Models\Menus;
+use Zidan\Menu\Models\MenuItems;
 
 class MenuController extends Controller
 {

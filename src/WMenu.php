@@ -1,9 +1,9 @@
 <?php
 
-namespace NguyenHuy\Menu;
+namespace Zidan\Menu;
 
-use NguyenHuy\Menu\Models\Menus;
-use NguyenHuy\Menu\Models\MenuItems;
+use Zidan\Menu\Models\Menus;
+use Zidan\Menu\Models\MenuItems;
 use Illuminate\Support\Facades\DB;
 
 class WMenu
@@ -21,7 +21,7 @@ class WMenu
             (request()->has('action') && empty(request()->input('menu')))
             || request()->input('menu') == '0'
         ) {
-            return view('nguyendachuy-menu::menu-html')->with("menulist", $menulist);
+            return view('zidan-menu::menu-html')->with("menulist", $menulist);
         } else {
             $menu = Menus::find(request()->input('menu'));
             $menus = self::get(request()->input('menu'));
@@ -35,13 +35,13 @@ class WMenu
                 $data['role_pk'] = config('menu.roles_pk');
                 $data['role_title_field'] = config('menu.roles_title_field');
             }
-            return view('nguyendachuy-menu::menu-html', $data);
+            return view('zidan-menu::menu-html', $data);
         }
     }
 
     public function scripts()
     {
-        return view('nguyendachuy-menu::scripts');
+        return view('zidan-menu::scripts');
     }
 
     public function select($name = "menu", $menulist = array(), $attributes = array())

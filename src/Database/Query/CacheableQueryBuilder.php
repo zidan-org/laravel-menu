@@ -1,6 +1,6 @@
 <?php
 
-namespace NguyenHuy\Menu\Database\Query;
+namespace Zidan\Menu\Database\Query;
 
 use Illuminate\Database\Query\Builder;
 use Illuminate\Database\Query\Grammars\Grammar;

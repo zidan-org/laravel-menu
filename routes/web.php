@@ -1,7 +1,7 @@
 <?php
 
 Route::group([
-    'namespace' => 'NguyenHuy\Menu\Http\Controllers',
+    'namespace' => 'Zidan\Menu\Http\Controllers',
     'middleware' => config('menu.middleware'),
     'prefix' => config('menu.route_prefix'),
     'as' => 'h-menu.',

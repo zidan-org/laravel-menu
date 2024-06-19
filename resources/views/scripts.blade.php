@@ -17,4 +17,4 @@
 	});
 </script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/nestable2@1.6.0/jquery.nestable.min.js"></script>
-<script type="text/javascript" src="{{asset('vendor/nguyendachuy-menu/menu.js')}}"></script>
+<script type="text/javascript" src="{{asset('vendor/zidan-menu/menu.js')}}"></script>

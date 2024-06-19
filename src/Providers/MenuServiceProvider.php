@@ -1,9 +1,9 @@
 <?php
 
-namespace NguyenHuy\Menu\Providers;
+namespace Zidan\Menu\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use NguyenHuy\Menu\WMenu;
+use Zidan\Menu\WMenu;
 
 class MenuServiceProvider extends ServiceProvider
 {
@@ -18,18 +18,18 @@ class MenuServiceProvider extends ServiceProvider
             require  __DIR__ . '/../../routes/web.php';
         }
 
-        $this->loadViewsFrom(__DIR__ . '/../../../', 'nguyendachuy-menu');
+        $this->loadViewsFrom(__DIR__ . '/../../../', 'zidan-menu');
 
         $this->publishes([
             __DIR__ . '/../../config/menu.php'  => config_path('menu.php'),
         ], 'laravel-menu-config');
 
         $this->publishes([
-            __DIR__ . '/../../resources/views' => resource_path('views/vendor/nguyendachuy-menu'),
+            __DIR__ . '/../../resources/views' => resource_path('views/vendor/zidan-menu'),
         ], 'laravel-menu-view');
 
         $this->publishes([
-            __DIR__ . '/../../public' => public_path('vendor/nguyendachuy-menu'),
+            __DIR__ . '/../../public' => public_path('vendor/zidan-menu'),
         ], 'laravel-menu-public');
 
         $this->publishes([
@@ -51,11 +51,11 @@ class MenuServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('nguyendachuy-menu', function () {
+        $this->app->bind('zidan-menu', function () {
             return new WMenu();
         });
 
-        $this->app->make('NguyenHuy\Menu\Http\Controllers\MenuController');
+        $this->app->make('Zidan\Menu\Http\Controllers\MenuController');
         $this->mergeConfigFrom(
             __DIR__ . '/../../config/menu.php',
             'menu'

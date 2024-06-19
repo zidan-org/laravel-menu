@@ -22,7 +22,7 @@ return [
     'table_name_items' => 'menu_items',
 
     /* you can set your route path*/
-    'route_prefix' => 'nguyendachuy',
+    'route_prefix' => 'zidan',
 
     /* here you can make menu items visible to specific roles */
     'use_roles' => false,

@@ -1,6 +1,6 @@
 <?php
 
-namespace NguyenHuy\Menu\Events;
+namespace Zidan\Menu\Events;
 
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;

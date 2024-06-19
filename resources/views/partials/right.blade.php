@@ -51,7 +51,7 @@
                     <div class="dd nestable-menu" id="nestable">
                         <ol class="dd-list">	
                             @foreach($menus as $key => $m)
-                                @include('nguyendachuy-menu::partials.loop-item', ['key' => $key])
+                                @include('zidan-menu::partials.loop-item', ['key' => $key])
                             @endforeach
                         </ol>
                     </div>
